@@ -1,0 +1,86 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Klant {
+  id           Int        @id @default(autoincrement())
+  naam         String
+  email        String?
+  telefoon     String?
+  adres        String?
+  stad         String?
+  postcode     String?
+  notities     String?
+  aangemaaktOp DateTime   @default(now())
+  facturen     Factuur[]
+
+  @@map("klanten")
+}
+
+model Factuur {
+  id             Int            @id @default(autoincrement())
+  factuurNummer  String         @unique
+  klantId        Int
+  klant          Klant          @relation(fields: [klantId], references: [id])
+  status         String         @default("concept")
+  vervaldatum    DateTime?
+  btwPercentage  Float          @default(21.0)
+  notities       String?
+  aangemaaktOp   DateTime       @default(now())
+  verstuurdOp    DateTime?
+  betaaldOp      DateTime?
+  regels         FactuurRegel[]
+
+  @@map("facturen")
+}
+
+model FactuurRegel {
+  id            Int     @id @default(autoincrement())
+  factuurId     Int
+  factuur       Factuur @relation(fields: [factuurId], references: [id], onDelete: Cascade)
+  omschrijving  String
+  aantal        Float
+  eenheidsprijs Float
+  volgorde      Int     @default(0)
+
+  @@map("factuur_regels")
+}
+
+model Feestverzoek {
+  id              Int       @id @default(autoincrement())
+  naam            String
+  email           String
+  telefoon        String?
+  datumEvenement  DateTime?
+  aantalPersonen  Int?
+  typeEvenement   String?
+  bericht         String?
+  status          String    @default("nieuw")
+  emailVerstuurdOp DateTime?
+  aangemaaktOp    DateTime  @default(now())
+
+  @@map("feestverzoeken")
+}
+
+model EmailTemplate {
+  id          Int      @id @default(autoincrement())
+  naam        String
+  type        String
+  onderwerp   String
+  inhoud      String
+  bijgewerktOp DateTime @default(now())
+
+  @@map("email_templates")
+}
+
+model Instelling {
+  sleutel String @id
+  waarde  String
+
+  @@map("instellingen")
+}
