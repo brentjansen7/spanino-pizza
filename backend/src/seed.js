@@ -29,6 +29,17 @@ async function seed() {
     });
   }
 
+  // Zorg dat beheer wachtwoord altijd ingesteld is (nooit leeg)
+  const ww = await prisma.instelling.findUnique({ where: { sleutel: 'beheer_wachtwoord' } });
+  if (!ww || !ww.waarde) {
+    await prisma.instelling.upsert({
+      where: { sleutel: 'beheer_wachtwoord' },
+      update: { waarde: 'spanino2026' },
+      create: { sleutel: 'beheer_wachtwoord', waarde: 'spanino2026' },
+    });
+    console.log('Beheer wachtwoord ingesteld op: spanino2026');
+  }
+
   // Standaard e-mailtemplates
   const bestaandeFeest = await prisma.emailTemplate.findFirst({ where: { type: 'feest' } });
   if (!bestaandeFeest) {

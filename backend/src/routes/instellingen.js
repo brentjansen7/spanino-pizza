@@ -30,6 +30,7 @@ router.put('/', async (req, res) => {
     for (const [sleutel, waarde] of Object.entries(updates)) {
       // Sla lege wachtwoorden niet op (behoudt het bestaande wachtwoord)
       if (sleutel === 'smtp_wachtwoord' && waarde === '••••••••') continue;
+      if (sleutel === 'beheer_wachtwoord' && !waarde) continue;
       await prisma.instelling.upsert({
         where: { sleutel },
         update: { waarde: String(waarde) },
