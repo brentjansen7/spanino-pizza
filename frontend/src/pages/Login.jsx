@@ -14,7 +14,7 @@ export default function Login() {
     setLaden(true);
     try {
       await authApi.login(wachtwoord);
-      navigeer('/');
+      window.location.href = '/';
     } catch (err) {
       setFout('Verkeerd wachtwoord. Probeer het opnieuw.');
     } finally {
