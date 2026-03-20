@@ -1,5 +1,7 @@
 {
   "rewrites": [
+    { "source": "/api/:path*", "destination": "https://spanino-pizza-production.up.railway.app/api/:path*" },
+    { "source": "/uploads/:path*", "destination": "https://spanino-pizza-production.up.railway.app/uploads/:path*" },
     { "source": "/(.*)", "destination": "/" }
   ]
 }
