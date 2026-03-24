@@ -33,7 +33,10 @@ export default function Navbar() {
         </div>
       </div>
 
-      <ul className="flex-1 py-3 space-y-0.5">
+      <ul className="flex-1 py-4 space-y-0.5">
+        <li className="px-6 pb-1">
+          <p className="text-[10px] font-semibold text-gray-500 uppercase tracking-widest">Menu</p>
+        </li>
         {navigatieItems.map((item) => {
           const actief = locatie.pathname === item.pad ||
             (item.pad !== '/' && locatie.pathname.startsWith(item.pad));

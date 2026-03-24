@@ -37,7 +37,12 @@ export default function Dashboard() {
 
   return (
     <div className="p-8 max-w-5xl">
-      <h1 className="text-2xl font-bold text-gray-800 mb-6">Dashboard</h1>
+      <div className="mb-8">
+        <h1 className="text-2xl font-bold text-gray-900 tracking-tight">Dashboard</h1>
+        <p className="text-sm text-gray-400 mt-1">
+          {new Date().toLocaleDateString('nl-NL', { weekday: 'long', day: 'numeric', month: 'long' })}
+        </p>
+      </div>
 
       {/* Overzichtkaarten */}
       <div className="grid grid-cols-3 gap-6 mb-10">
@@ -86,25 +91,28 @@ export default function Dashboard() {
           {verzoeken.length === 0 ? (
             <p className="text-sm text-gray-400">Nog geen verzoeken</p>
           ) : (
-            <ul className="space-y-2">
+            <ul className="divide-y divide-gray-50">
               {verzoeken.slice(0, 5).map((v) => (
                 <li key={v.id}>
                   <Link
                     to={`/feestverzoeken/${v.id}`}
-                    className="flex justify-between items-center text-sm py-1.5 hover:text-pizza-red transition-colors"
+                    className="flex justify-between items-center text-sm py-2.5 group hover:text-pizza-red transition-colors"
                   >
-                    <span>{v.naam}</span>
-                    <span
-                      className={`text-xs px-2 py-0.5 rounded-full font-medium ${
-                        v.status === 'nieuw'
-                          ? 'bg-yellow-100 text-yellow-700'
-                          : v.status === 'beantwoord'
-                          ? 'bg-green-100 text-green-700'
-                          : 'bg-gray-100 text-gray-500'
-                      }`}
-                    >
-                      {v.status}
-                    </span>
+                    <span className="font-medium text-gray-700 group-hover:text-pizza-red">{v.naam}</span>
+                    <div className="flex items-center gap-2">
+                      <span
+                        className={`text-xs px-2 py-0.5 rounded-full font-medium ${
+                          v.status === 'nieuw'
+                            ? 'bg-yellow-100 text-yellow-700'
+                            : v.status === 'beantwoord'
+                            ? 'bg-green-100 text-green-700'
+                            : 'bg-gray-100 text-gray-500'
+                        }`}
+                      >
+                        {v.status}
+                      </span>
+                      <span className="text-gray-300 group-hover:text-pizza-red transition-colors">›</span>
+                    </div>
                   </Link>
                 </li>
               ))}
@@ -123,15 +131,21 @@ export default function Dashboard() {
           {openFacturen.length === 0 ? (
             <p className="text-sm text-gray-400">Geen openstaande facturen</p>
           ) : (
-            <ul className="space-y-2">
+            <ul className="divide-y divide-gray-50">
               {openFacturen.slice(0, 5).map((f) => (
                 <li key={f.id}>
                   <Link
                     to={`/facturen/${f.id}`}
-                    className="flex justify-between items-center text-sm py-1.5 hover:text-pizza-red transition-colors"
+                    className="flex justify-between items-center text-sm py-2.5 group"
                   >
-                    <span>{f.factuurNummer} — {f.klant?.naam}</span>
-                    <span className="font-medium">{bedrag(berekenTotaal(f))}</span>
+                    <div>
+                      <span className="font-medium text-gray-700 group-hover:text-pizza-red transition-colors">{f.klant?.naam}</span>
+                      <span className="text-gray-400 text-xs ml-2">{f.factuurNummer}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="font-semibold text-gray-800">{bedrag(berekenTotaal(f))}</span>
+                      <span className="text-gray-300 group-hover:text-pizza-red transition-colors">›</span>
+                    </div>
                   </Link>
                 </li>
               ))}

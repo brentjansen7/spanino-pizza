@@ -24,11 +24,15 @@ export default function Login() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-pizza-dark via-[#162d4a] to-[#0f1e30] flex items-center justify-center p-4">
-      <div className="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-sm">
+      <div className="bg-white rounded-2xl shadow-2xl overflow-hidden w-full max-w-sm">
+        <div className="h-1 bg-gradient-to-r from-pizza-red via-orange-400 to-yellow-400" />
+        <div className="p-8">
         <div className="text-center mb-8">
-          <div className="text-5xl mb-3">🍕</div>
-          <h1 className="text-2xl font-bold text-gray-800">Spanino Pizza</h1>
-          <p className="text-gray-500 text-sm mt-1">Beheerpaneel</p>
+          <div className="w-16 h-16 bg-gradient-to-br from-pizza-red to-orange-500 rounded-2xl flex items-center justify-center text-3xl shadow-lg shadow-red-200 mx-auto mb-4">
+            🍕
+          </div>
+          <h1 className="text-2xl font-bold text-gray-800 tracking-tight">Spanino Pizza</h1>
+          <p className="text-gray-400 text-sm mt-1">Beheerpaneel</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -64,6 +68,7 @@ export default function Login() {
           Standaard wachtwoord: <strong>spanino2026</strong>
           <br />Wijzig dit via Instellingen
         </p>
+        </div>
       </div>
     </div>
   );
