@@ -41,20 +41,35 @@ export default function Dashboard() {
 
       {/* Overzichtkaarten */}
       <div className="grid grid-cols-3 gap-6 mb-10">
-        <div className="bg-white rounded-xl shadow-sm p-6 border-l-4 border-pizza-red">
-          <p className="text-sm text-gray-500">Openstaande facturen</p>
-          <p className="text-3xl font-bold text-gray-800 mt-1">{openFacturen.length}</p>
-          <p className="text-sm text-gray-500 mt-1">{bedrag(openBedrag)} te ontvangen</p>
+        <div className="bg-white rounded-xl shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 p-6 border-l-4 border-pizza-red">
+          <div className="flex items-start justify-between">
+            <div>
+              <p className="text-sm text-gray-500">Openstaande facturen</p>
+              <p className="text-3xl font-bold text-gray-800 mt-1">{openFacturen.length}</p>
+              <p className="text-sm text-gray-500 mt-1">{bedrag(openBedrag)} te ontvangen</p>
+            </div>
+            <div className="w-10 h-10 bg-red-50 rounded-lg flex items-center justify-center text-lg shrink-0">📄</div>
+          </div>
         </div>
-        <div className="bg-white rounded-xl shadow-sm p-6 border-l-4 border-yellow-400">
-          <p className="text-sm text-gray-500">Nieuwe feestverzoeken</p>
-          <p className="text-3xl font-bold text-gray-800 mt-1">{nieuweVerzoeken.length}</p>
-          <p className="text-sm text-gray-500 mt-1">Nog niet beantwoord</p>
+        <div className="bg-white rounded-xl shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 p-6 border-l-4 border-yellow-400">
+          <div className="flex items-start justify-between">
+            <div>
+              <p className="text-sm text-gray-500">Nieuwe feestverzoeken</p>
+              <p className="text-3xl font-bold text-gray-800 mt-1">{nieuweVerzoeken.length}</p>
+              <p className="text-sm text-gray-500 mt-1">Nog niet beantwoord</p>
+            </div>
+            <div className="w-10 h-10 bg-yellow-50 rounded-lg flex items-center justify-center text-lg shrink-0">🎉</div>
+          </div>
         </div>
-        <div className="bg-white rounded-xl shadow-sm p-6 border-l-4 border-green-400">
-          <p className="text-sm text-gray-500">Facturen dit jaar</p>
-          <p className="text-3xl font-bold text-gray-800 mt-1">{facturen.length}</p>
-          <p className="text-sm text-gray-500 mt-1">Totaal aangemaakt</p>
+        <div className="bg-white rounded-xl shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 p-6 border-l-4 border-green-400">
+          <div className="flex items-start justify-between">
+            <div>
+              <p className="text-sm text-gray-500">Facturen dit jaar</p>
+              <p className="text-3xl font-bold text-gray-800 mt-1">{facturen.length}</p>
+              <p className="text-sm text-gray-500 mt-1">Totaal aangemaakt</p>
+            </div>
+            <div className="w-10 h-10 bg-green-50 rounded-lg flex items-center justify-center text-lg shrink-0">✅</div>
+          </div>
         </div>
       </div>
 

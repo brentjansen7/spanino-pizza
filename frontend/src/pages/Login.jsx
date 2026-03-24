@@ -23,7 +23,7 @@ export default function Login() {
   }
 
   return (
-    <div className="min-h-screen bg-pizza-dark flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-pizza-dark via-[#162d4a] to-[#0f1e30] flex items-center justify-center p-4">
       <div className="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-sm">
         <div className="text-center mb-8">
           <div className="text-5xl mb-3">🍕</div>
